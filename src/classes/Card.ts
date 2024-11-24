@@ -9,7 +9,7 @@ export default class Card {
     private prioridade: "baixa" | "media" | "alta"| "urgente" | null
     private responsavel: string | null
 
-    constructor(titulo: string, descricao: string, data: string, status: "pendente" | "concluido", prioridade: "baixa" | "media" | "alta"| "urgente" | null, responsavel: string | null) {
+    constructor(titulo: string, descricao: string, prioridade: "baixa" | "media" | "alta"| "urgente" | null, responsavel: string | null) {
         this.id = Util.gerarUuid()
         this.titulo = titulo
         this.descricao = descricao
