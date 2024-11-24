@@ -1,4 +1,4 @@
-import Util from './Util'
+import Util from './util'
 
 export default class Card {
     private readonly id: string;
