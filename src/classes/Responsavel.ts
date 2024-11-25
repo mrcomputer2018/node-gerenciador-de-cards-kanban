@@ -1,3 +1,4 @@
+import { CreateResponsavelRepository } from "../repositories/CreateResponsavelRepository.ts";
 import Util from "./util";
 
 export default class Responsavel {
@@ -41,6 +42,39 @@ export default class Responsavel {
             return true
         } else {
             return false
+        }
+    }
+
+    async cadastrarResponsavel(nome: string, email: string, telefone: string): Promise<Responsavel> {
+        try {
+            if (!nome || !email || !telefone) {
+                console.log('Preencha todos os campos')
+            }
+
+            const createResponsavel = new CreateResponsavelRepository();
+
+            const response = await createResponsavel.execute({ nome, email, telefone })
+    
+            const { nome: nomeResp, email: emailResp, telefone: telefoneResp } = response.data
+    
+            if (response.statusCode !== 200) {
+                console.log('Erro ao cadastrar responsável')
+            }
+            else {
+                console.log(`Responsável cadastrado com sucesso: ${nomeResp}`)
+            }
+    
+            return new Responsavel(nomeResp, emailResp, telefoneResp);
+
+        } 
+        catch (error) {
+            if (error instanceof Error) {
+                console.log(`Erro: ${error.message}`);
+            } else {
+                console.log(`Erro desconhecido: ${error}`);
+            }
+
+            return new Responsavel('', '', '');
         }
     }
 }

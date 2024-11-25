@@ -1,6 +1,5 @@
-import "reflect-metadata"
-import Card from "./classes/Card";
 import prompt from "prompt-sync"
+import Card from "./classes/Card";
 import Responsavel from "./classes/Responsavel";
 
 let option: number = 0;
@@ -33,18 +32,17 @@ try {
             let email: string = teclado("Digite o email: ")
             let telefone: string = teclado("Digite o telefone: ")
 
-            // verifica se o responsavel já existe
+            /* // verifica se o responsavel já existe
             if (responsavel.isExistResponsavel(nome, [responsavel])) {
                 break
-            }
+            } */
 
             responsavel.setNome(nome)
             responsavel.setEmail(email)
             responsavel.setTelefone(telefone)
 
-            responsaveis.push(responsavel)
-
-            console.log(`\nResponsável criado com sucesso: ${nome}, ${email}, ${telefone}`)
+            const newResponsavel = await responsavel.cadastrarResponsavel(nome, email, telefone)
+            responsaveis.push(newResponsavel)
         }
         else if( option === 2) {
             let titulo: string = teclado("Digite o titulo: ")

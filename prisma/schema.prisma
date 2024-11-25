@@ -13,7 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Resposavel {
+model Responsavel {
     id        String   @id @default(uuid())
     nome      String
     email     String   @unique
@@ -30,7 +30,7 @@ model Card {
     data          String
     status        String
     prioridade    String
-    responsavel   Resposavel? @relation(fields: [responsavelid], references: [id])
+    responsavel   Responsavel? @relation(fields: [responsavelid], references: [id])
     responsavelid String?
     createdAt     DateTime @default(now())
     updatedAt     DateTime @updatedAt
