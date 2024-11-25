@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import Card from "./classes/Card";
 import prompt from "prompt-sync"
 import Responsavel from "./classes/Responsavel";

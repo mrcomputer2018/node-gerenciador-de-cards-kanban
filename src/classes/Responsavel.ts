@@ -28,9 +28,9 @@ export default class Responsavel {
 
     // Metodos
     getDetalhes(): string {
-        return ` Nome: ${this.nome}` +
-        `E-mail: ${this.email} ` +
-        `Telefone: ${this.telefone}`
+        return ` \nNome: ${this.nome}` +
+        `\nE-mail: ${this.email} ` +
+        `\nTelefone: ${this.telefone}`
     }
 
     isExistResponsavel(nome: string, responsaveis: Responsavel[]): boolean {

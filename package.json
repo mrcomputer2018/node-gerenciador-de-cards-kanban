@@ -11,7 +11,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "prompt-sync": "^4.2.0"
+    "pg": "^8.13.1",
+    "prompt-sync": "^4.2.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20"
   },
   "devDependencies": {
     "@types/node": "^22.9.3",
