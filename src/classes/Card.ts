@@ -1,3 +1,4 @@
+import Responsavel from './Responsavel';
 import Util from './util'
 
 export default class Card {
@@ -7,7 +8,7 @@ export default class Card {
     private data: string
     private status: "pendente" | "concluido"
     private prioridade: "baixa" | "media" | "alta"| "urgente" | null
-    private responsavel: string | null
+    private responsavel: Responsavel [] | null
 
     constructor(titulo: string, descricao: string, prioridade: "baixa" | "media" | "alta"| "urgente" | null, responsavel: string | null) {
         this.id = Util.gerarUuid()
@@ -39,7 +40,7 @@ export default class Card {
         this.prioridade = prioridade
     }
 
-    public setResponsavel(responsavel: string | null): void {
+    public setResponsavel(responsavel: Responsavel[] | null): void {
         this.responsavel = responsavel
     }
 

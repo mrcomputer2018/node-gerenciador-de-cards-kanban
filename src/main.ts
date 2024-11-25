@@ -3,16 +3,24 @@ import prompt from "prompt-sync"
 import Responsavel from "./classes/Responsavel";
 
 let option: number = 0;
+let continuar: string = 's';
 let teclado = prompt();
 
+let nome: string = ''
+let email: string = ''
+let telefone: string = ''
+let responsaveis: Responsavel[] = []
+const responsavel: Responsavel = new Responsavel(nome, email, telefone)
+let cards: Card[] = []
+
 try {
-    while (option !== 9) {
+    while (option !== 9 || continuar === 's') {
         console.log("\n")
         console.log(`+========= MENU DE OPÇOES ==========+`)
         console.log("|1 - Cadastro de Responsável        |")
         console.log("|2 - Cadastro de Card               |")
-        console.log("|3 -                                |")
-        console.log("|4 -                                |")
+        console.log("|3 - Listar Responsaveis            |")
+        console.log("|4 - Listar Cards                   |")
         console.log("|9 - Sair                           |")
         console.log("+===================================+")
     
@@ -23,9 +31,18 @@ try {
             let nome: string = teclado("Digite o nome: ")
             let email: string = teclado("Digite o email: ")
             let telefone: string = teclado("Digite o telefone: ")
-    
-            const responsavel: Responsavel = new Responsavel(nome, email, telefone)
-            
+
+            // verifica se o responsavel já existe
+            if (responsavel.isExistResponsavel(nome, [responsavel])) {
+                break
+            }
+
+            responsavel.setNome(nome)
+            responsavel.setEmail(email)
+            responsavel.setTelefone(telefone)
+
+            responsaveis.push(responsavel)
+
             console.log(`\nResponsável criado com sucesso: ${nome}, ${email}, ${telefone}`)
         }
         else if( option === 2) {
@@ -39,12 +56,28 @@ try {
             const card: Card = new Card(titulo, descricao, prioridade, responsavel)
             console.log(`Card criado com sucesso: ${card.getDetalhes()}`)
         }
+        else if( option === 3) {
+            console.log(`\n+=== LISTA DE RESPONSÁVEIS ===+`)
+            responsaveis.forEach(responsavel => {
+                console.log(responsavel.getDetalhes())
+            })
+        }
+        else if( option === 4) {
+            console.log(`\n+=== LISTA DE CARDS ===+`)
+            cards.forEach(card => {
+                console.log(card.getDetalhes())
+            })
+        }
         else if ( option === 9) {
             console.log("\nSaindo do programa...")
+            continuar = 'n'
+            break
         }
         else {
             console.log("\nOpção inválida!!!")
         }
+
+        continuar = teclado("Deseja continuar? (s/n): ")
     }
 } catch (error) {
     if (error instanceof Error) {
