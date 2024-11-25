@@ -1,5 +1,6 @@
 import Card from "./classes/Card";
 import prompt from "prompt-sync"
+import Responsavel from "./classes/Responsavel";
 
 let option: number = 0;
 let teclado = prompt();
@@ -23,6 +24,8 @@ try {
             let email: string = teclado("Digite o email: ")
             let telefone: string = teclado("Digite o telefone: ")
     
+            const responsavel: Responsavel = new Responsavel(nome, email, telefone)
+            
             console.log(`\nResponsável criado com sucesso: ${nome}, ${email}, ${telefone}`)
         }
         else if( option === 2) {
@@ -33,7 +36,7 @@ try {
                 ["baixa", "media", "alta", "urgente"].includes(prioridadeInput) ? prioridadeInput as "baixa" | "media" | "alta" | "urgente" : null;
             let responsavel: string | null = teclado("Digite o nome do responsavel: ")
     
-            let card: Card = new Card(titulo, descricao, prioridade, responsavel)
+            const card: Card = new Card(titulo, descricao, prioridade, responsavel)
             console.log(`Card criado com sucesso: ${card.getDetalhes()}`)
         }
         else if ( option === 9) {

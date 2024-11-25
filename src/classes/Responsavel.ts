@@ -19,4 +19,14 @@ export default class Responsavel {
         `E-mail: ${this.email} ` +
         `Telefone: ${this.telefone}`
     }
+
+    isExistResponsavel(nome: string, responsaveis: Responsavel[]): boolean {
+        const xeist = responsaveis.find(responsavel => responsavel.nome === nome)
+        
+        if (xeist) {
+            return true
+        } else {
+            return false
+        }
+    }
 }
