@@ -8,22 +8,22 @@ try {
     while (option !== 9) {
         console.log("\n")
         console.log(`+========= MENU DE OPÇOES ==========+`)
-        console.log("|1 - Criar Responsável              |")
-        console.log("|2 - Criar Card                     |")
+        console.log("|1 - Cadastro de Responsável        |")
+        console.log("|2 - Cadastro de Card               |")
         console.log("|3 -                                |")
         console.log("|4 -                                |")
         console.log("|9 - Sair                           |")
         console.log("+===================================+")
-        console.log("Digite uma opção: ")
     
         option = +teclado("Digite uma opção: ")
     
         if( option === 1) {
+            console.log(`\n+=== CADASTRO DE RESPONSÁVEIS ===+`)
             let nome: string = teclado("Digite o nome: ")
             let email: string = teclado("Digite o email: ")
             let telefone: string = teclado("Digite o telefone: ")
     
-            console.log(`Responsável criado com sucesso: ${nome} - ${email} - ${telefone}`)
+            console.log(`\nResponsável criado com sucesso: ${nome}, ${email}, ${telefone}`)
         }
         else if( option === 2) {
             let titulo: string = teclado("Digite o titulo: ")

@@ -15,6 +15,8 @@ export default class Responsavel {
 
     // Metodos
     getDetalhes(): string {
-        return `${this.nome} - ${this.email} - ${this.telefone}`
+        return ` Nome: ${this.nome}` +
+        `E-mail: ${this.email} ` +
+        `Telefone: ${this.telefone}`
     }
 }
