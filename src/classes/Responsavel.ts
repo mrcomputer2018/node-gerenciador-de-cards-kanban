@@ -1,4 +1,5 @@
 import { CreateResponsavelRepository } from "../repositories/CreateResponsavelRepository.ts";
+import { ListResponsavelRepository } from "../repositories/ListResponsavelRepository";
 import Util from "./util";
 
 export default class Responsavel {
@@ -49,6 +50,7 @@ export default class Responsavel {
         try {
             if (!nome || !email || !telefone) {
                 console.log('Preencha todos os campos')
+                return new Responsavel('', '', '')
             }
 
             const createResponsavel = new CreateResponsavelRepository();
@@ -57,14 +59,16 @@ export default class Responsavel {
     
             const { nome: nomeResp, email: emailResp, telefone: telefoneResp } = response.data
     
-            if (response.statusCode !== 200) {
-                console.log('Erro ao cadastrar responsável')
+            if (response.statusCode !== 200 && response.statusCode !== 201 ) {
+                console.log('\nErro ao cadastrar responsável')
             }
             else {
-                console.log(`Responsável cadastrado com sucesso: ${nomeResp}`)
+                console.log(`\nResponsável cadastrado com sucesso: ${nomeResp}`)
             }
     
-            return new Responsavel(nomeResp, emailResp, telefoneResp);
+            const newResponsavel = new Responsavel(nomeResp, emailResp, telefoneResp);
+
+            return newResponsavel;
 
         } 
         catch (error) {
@@ -75,6 +79,38 @@ export default class Responsavel {
             }
 
             return new Responsavel('', '', '');
+        }
+    }
+
+    async listarResponsaveis(): Promise<Responsavel[]> {
+        try {
+            const listResponsavelRepository = new ListResponsavelRepository();
+
+            const response = await  listResponsavelRepository.execute();
+
+            if (response.statusCode !== 200 && response.statusCode !== 201 ) {
+                console.log('\nErro ao listar responsáveis')
+            }
+            else {
+                console.log(`\nResponsáveis listados com sucesso`)
+            }
+
+            const responsaveis = response.data.map((responsavel: any) => {
+                const { nome, email, telefone } = responsavel;
+                return new Responsavel(nome, email, telefone);
+            })
+
+            return responsaveis;
+
+        } 
+        catch (error) {
+            if (error instanceof Error) {
+                console.log(`Erro: ${error.message}`);
+            } else {
+                console.log(`Erro desconhecido: ${error}`);
+            }
+
+            return [];
         }
     }
 }
