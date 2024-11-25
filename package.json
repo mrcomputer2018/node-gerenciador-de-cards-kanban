@@ -1,25 +1,12 @@
 {
   "name": "gerenciador-de-cards-kanban",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@prisma/client": "^5.22.0",
-    "prompt-sync": "^4.2.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.9.3",
-    "@types/prompt-sync": "^4.2.3",
-    "prisma": "^5.22.0",
-    "ts-node-dev": "^2.0.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
-  }
+  "description": ""
 }
