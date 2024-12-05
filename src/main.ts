@@ -3,7 +3,6 @@ import Card from "./classes/Card";
 import Responsavel from "./classes/Responsavel";
 
 let option: number = 0;
-let continuar: string = 's';
 let teclado = prompt();
 
 let nome: string = ''
@@ -12,7 +11,6 @@ let telefone: string = ''
 let responsaveis: Responsavel[] = []
 const responsavel: Responsavel = new Responsavel(nome, email, telefone)
 let cards: Card[] = []
-
 
 async function init() {
     try {
@@ -23,7 +21,7 @@ async function init() {
             console.log("|2 - Cadastro de Card               |")
             console.log("|3 - Listar Responsaveis            |")
             console.log("|4 - Listar Cards                   |")
-            console.log("|5 - deletar Responsável            |")
+            console.log("|5 - Deletar Responsável            |")
             console.log("|9 - Sair                           |")
             console.log("+===================================+")
         
