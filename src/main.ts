@@ -16,13 +16,14 @@ let cards: Card[] = []
 
 async function init() {
     try {
-        while (option !== 9 || continuar === 's') {
+        while (true) {
             console.log("\n")
             console.log(`+========= MENU DE OPÇOES ==========+`)
             console.log("|1 - Cadastro de Responsável        |")
             console.log("|2 - Cadastro de Card               |")
             console.log("|3 - Listar Responsaveis            |")
             console.log("|4 - Listar Cards                   |")
+            console.log("|5 - deletar Responsável            |")
             console.log("|9 - Sair                           |")
             console.log("+===================================+")
         
@@ -34,10 +35,10 @@ async function init() {
                 let email: string = teclado("Digite o email: ")
                 let telefone: string = teclado("Digite o telefone: ")
     
-                /* // verifica se o responsavel já existe
+                // verifica se o responsavel já existe
                 if (responsavel.isExistResponsavel(nome, [responsavel])) {
                     break
-                } */
+                }
     
                 responsavel.setNome(nome)
                 responsavel.setEmail(email)
@@ -78,16 +79,25 @@ async function init() {
                     console.log(card.getDetalhes())
                 })
             }
+            else if( option === 5) {
+                console.log(`\n+=== DELETAR RESPONSAVEL ===+`)
+                let email: string = teclado("Digite o email do responsável: ")
+
+                try {
+                    await responsavel.deletarResponsavel(email);
+                } catch (error) {
+                    console.log(`Erro: ${error instanceof Error ? error.message : error}`);
+                }
+
+            }
             else if ( option === 9) {
                 console.log("\nSaindo do programa...")
-                continuar = 'n'
-                break
+                process.exit()
             }
             else {
                 console.log("\nOpção inválida!!!")
             }
-    
-            continuar = teclado("\nDeseja continuar? (s/n): ")
+
         }
     } catch (error) {
         if (error instanceof Error) {

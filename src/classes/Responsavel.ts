@@ -1,4 +1,5 @@
 import { CreateResponsavelRepository } from "../repositories/CreateResponsavelRepository.ts";
+import { DeleteResponsavelRepository } from "../repositories/DeleteResponsavelRepository";
 import { ListResponsavelRepository } from "../repositories/ListResponsavelRepository";
 import Util from "./util";
 
@@ -111,6 +112,29 @@ export default class Responsavel {
             }
 
             return [];
+        }
+    }
+
+    async deletarResponsavel(email: string): Promise<void> {
+        try {
+            const deleteResponsavelRepository = new DeleteResponsavelRepository();
+
+            const response = await deleteResponsavelRepository.execute(email);
+
+            if (response.statusCode !== 200 && response.statusCode !== 201 ) {
+                console.log('\nErro ao deletar responsável')
+            }
+            else {
+                console.log(`\nResponsável deletado com sucesso`)
+            }
+
+        } catch (error) {
+            if (error instanceof Error) {
+                console.log(`Erro: ${error.message}`);
+            } else {
+                console.log(`Erro desconhecido: ${error}`);
+            
+            }
         }
     }
 }

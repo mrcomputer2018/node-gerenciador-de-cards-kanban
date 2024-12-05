@@ -1,4 +1,3 @@
-import { Responsavel } from './../../node_modules/.prisma/client/index.d';
 import { db } from "../util/db";
 
 interface IResponsavel {
